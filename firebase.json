@@ -1,0 +1,29 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/*.log",
+      "**/*.yaml",
+      "**/*.yml",
+      "**/*.ps1",
+      "**/*.sh",
+      "**/Dockerfile",
+      "**/nginx.conf",
+      "**/cloudbuild.yaml",
+      "**/app.yaml",
+      "**/README.md",
+      "**/DEPLOYMENT.md",
+      "**/.gitignore",
+      "**/.firebaserc"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

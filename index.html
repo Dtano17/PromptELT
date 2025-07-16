@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptELT - AI-Powered Data Integration Platform</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <!-- Header/Navigation -->
+    <header class="header">
+      <div class="container flex items-center justify-between py-16">
+        <div class="logo flex items-center gap-8">
+          <div class="logo-icon">
+            <span class="logo__icon">🚀</span>
+          </div>
+          <h1 class="logo-text">PromptELT.ai</h1>
+        </div>
+        <nav class="nav flex items-center gap-16">
+          <button class="nav-tab active" data-view="dashboard-view">Dashboard</button>
+          <button class="nav-tab" data-view="conversational-view">Conversational Setup</button>
+          <button class="nav-tab" data-view="query-lab-view">Query Lab</button>
+          <button class="nav-tab" data-view="pipelines-view">Pipelines</button>
+          <button class="nav-tab" data-view="migration-view">Data Migration</button>
+          <button class="nav-tab" data-view="governance-view">Data Governance</button>
+          <button class="nav-tab" data-view="features-view">Features</button>
+          <div class="user-profile">
+            <div class="avatar">AP</div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main container py-16">
+      <!-- Dashboard View -->
+      <section class="view dashboard-view active" id="dashboard-view">
+        <div class="dashboard-header flex justify-between items-center mb-8">
+          <h2>Unified Data Dashboard</h2>
+          <div class="date-time">Wednesday, June 04, 2025, 11:14 AM</div>
+        </div>
+        
+        <!-- Stats Overview -->
+        <div class="stats-container flex gap-16 mb-8">
+          <div class="card stat-card fade-in-up" style="animation-delay: 0.1s;">
+            <div class="card__body">
+              <h4>Connected Databases</h4>
+              <div class="stat-value">6</div>
+              <div class="stat-label">Active Connections</div>
+            </div>
+          </div>
+          <div class="card stat-card fade-in-up" style="animation-delay: 0.2s;">
+            <div class="card__body">
+              <h4>Total Data Volume</h4>
+              <div class="stat-value">61.5TB</div>
+              <div class="stat-label">Across All Sources</div>
+            </div>
+          </div>
+          <div class="card stat-card fade-in-up" style="animation-delay: 0.3s;">
+            <div class="card__body">
+              <h4>Active Pipelines</h4>
+              <div class="stat-value">8</div>
+              <div class="stat-label">Running</div>
+            </div>
+          </div>
+          <div class="card stat-card fade-in-up" style="animation-delay: 0.4s;">
+            <div class="card__body">
+              <h4>Monthly Cost</h4>
+              <div class="stat-value">$10,400</div>
+              <div class="stat-label">Infrastructure</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connected Databases Grid -->
+        <div class="card databases-card mb-8 slide-in-left">
+          <div class="card__header flex justify-between items-center">
+            <h3>Connected Databases</h3>
+            <button class="btn btn--outline btn--sm glow-effect" id="add-db-btn">➕ Add Database</button>
+          </div>
+          <div class="card__body">
+            <div class="databases-grid" id="databases-grid">
+              <!-- Database cards will be populated via JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Real-time Data Flow -->
+        <div class="card flow-card mb-8">
+          <div class="card__header">
+            <h3>Real-time Data Flow</h3>
+          </div>
+          <div class="card__body">
+            <div class="flow-diagram" style="display: flex; justify-content: center; align-items: center; min-height: 480px; position: relative;">
+              <svg id="promptelt-flow-svg" width="700" height="480" viewBox="0 0 700 480" style="max-width:100%;height:auto;">
+                <!-- Curved lines (animated) -->
+                <path id="line-mssql" d="M350,240 Q180,180 170,80" stroke="#a91d22" stroke-width="4" fill="none" class="flow-line"/>
+                <path id="line-oracle" d="M350,240 Q120,240 120,360" stroke="#cc0000" stroke-width="4" fill="none" class="flow-line"/>
+                <path id="line-postgres" d="M350,240 Q180,300 220,420" stroke="#2c5aa0" stroke-width="4" fill="none" class="flow-line"/>
+                <path id="line-salesforce" d="M350,240 Q520,180 530,80" stroke="#00A1E0" stroke-width="4" fill="none" class="flow-line"/>
+                <path id="line-snowflake" d="M350,240 Q650,240 650,360" stroke="#29B5E8" stroke-width="4" fill="none" class="flow-line"/>
+                <path id="line-databricks" d="M350,240 Q520,300 480,420" stroke="#FF3621" stroke-width="4" fill="none" class="flow-line"/>
+                <!-- Central Node -->
+                <g class="central-node" cursor="pointer">
+                  <circle cx="350" cy="240" r="56" fill="#21808d" filter="url(#glow)"/>
+                  <text x="350" y="247" text-anchor="middle" fill="#fff" font-size="22" font-weight="bold">PromptELT</text>
+                </g>
+                <!-- Database Nodes (icons only, no names) -->
+                <g class="node mssql-node" cursor="pointer">
+                  <circle cx="170" cy="80" r="36" fill="#fff" stroke="#a91d22" stroke-width="3"/>
+                  <image href="/assets/icons/microsoft-sql-server.svg" x="150" y="60" width="40" height="40" />
+                </g>
+                <g class="node oracle-node" cursor="pointer">
+                  <circle cx="120" cy="360" r="36" fill="#fff" stroke="#cc0000" stroke-width="3"/>
+                  <image href="/assets/icons/oracle.svg" x="100" y="340" width="40" height="40" />
+                </g>
+                <g class="node postgres-node" cursor="pointer">
+                  <circle cx="220" cy="420" r="36" fill="#fff" stroke="#2c5aa0" stroke-width="3"/>
+                  <image href="/assets/icons/postgresql.svg" x="200" y="400" width="40" height="40" />
+                </g>
+                <g class="node salesforce-node" cursor="pointer">
+                  <circle cx="530" cy="80" r="36" fill="#fff" stroke="#00A1E0" stroke-width="3"/>
+                  <image href="/assets/icons/salesforce.svg" x="510" y="60" width="40" height="40" />
+                </g>
+                <g class="node snowflake-node" cursor="pointer">
+                  <circle cx="650" cy="360" r="36" fill="#fff" stroke="#29B5E8" stroke-width="3"/>
+                  <image href="/assets/icons/snowflake.svg" x="630" y="340" width="40" height="40" />
+                </g>
+                <g class="node databricks-node" cursor="pointer">
+                  <circle cx="480" cy="420" r="36" fill="#fff" stroke="#FF3621" stroke-width="3"/>
+                  <image href="/assets/icons/databricks.svg" x="460" y="400" width="40" height="40" />
+                </g>
+                <!-- Glow filter -->
+                <defs>
+                  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+                    <feMerge>
+                      <feMergeNode in="coloredBlur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+              </svg>
+              <div id="flow-tooltip" style="position:absolute;display:none;pointer-events:none;background:#fff;color:#21808d;padding:8px 14px;border-radius:8px;box-shadow:0 2px 8px rgba(33,128,141,0.12);font-size:15px;font-weight:500;z-index:10;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="activity-container flex gap-16">
+          <div class="card recent-queries-card">
+            <div class="card__header">
+              <h3>Recent Queries</h3>
+            </div>
+            <div class="card__body">
+              <div class="query-history-list" id="recent-queries-list">
+                <!-- Recent queries will be populated via JavaScript -->
+              </div>
+            </div>
+          </div>
+          <div class="card recent-pipelines-card">
+            <div class="card__header">
+              <h3>Pipeline Runs</h3>
+            </div>
+            <div class="card__body">
+              <div class="pipeline-runs-list" id="pipeline-runs-list">
+                <!-- Recent pipeline runs will be populated via JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conversational Setup View -->
+      <section class="view conversational-view" id="conversational-view">
+        <div class="conversational-header flex justify-between items-center mb-8">
+          <h2>Conversational Database Setup</h2>
+          <div class="ai-model-selector">
+            <label for="ai-model">AI Model:</label>
+            <select id="ai-model" class="form-control">
+              <option value="gpt-4">GPT-4</option>
+              <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+              <option value="claude-3">Claude 3</option>
+              <option value="llama-3">Llama 3</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="conversational-container">
+          <div class="chat-interface">
+            <div class="chat-header">
+              <div class="chat-title">
+                <span class="ai-avatar">🤖</span>
+                <span>PromptELT AI Assistant</span>
+              </div>
+              <div class="chat-status">
+                <span class="status-dot status-dot--active"></span>
+                Online
+              </div>
+            </div>
+            
+            <div class="chat-messages" id="chat-messages">
+              <div class="message ai-message">
+                <div class="message-content">
+                  <p>Hello! I'm your PromptELT AI assistant. I can help you:</p>
+                  <ul>
+                    <li>Connect to databases using natural language</li>
+                    <li>Create data pipelines through conversation</li>
+                    <li>Migrate data between different systems</li>
+                    <li>Set up data governance policies</li>
+                  </ul>
+                  <p>What would you like to do today?</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="chat-input">
+              <div class="input-container">
+                <textarea id="chat-input-field" placeholder="Tell me what you want to do with your data..." class="form-control"></textarea>
+                <button class="btn btn--primary" id="send-message">Send</button>
+              </div>
+              <div class="quick-actions">
+                <button class="quick-action-btn" data-prompt="Connect to my SQL Server database">Connect SQL Server</button>
+                <button class="quick-action-btn" data-prompt="Create a pipeline from Snowflake to Databricks">Create Pipeline</button>
+                <button class="quick-action-btn" data-prompt="Migrate data from Oracle to PostgreSQL">Migrate Data</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="setup-preview">
+            <div class="card">
+              <div class="card__header">
+                <h3>Setup Preview</h3>
+              </div>
+              <div class="card__body">
+                <div id="setup-preview-content">
+                  <p class="empty-state">Start a conversation to see the setup preview</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Query Lab View -->
+      <section class="view query-lab-view" id="query-lab-view">
+        <div class="query-lab-header flex justify-between items-center mb-8">
+          <h2>Natural Language Query Lab</h2>
+          <div class="flex gap-8">
+            <select id="query-db-selector" class="form-control">
+              <option value="">All Databases</option>
+              <!-- Database options will be populated via JavaScript -->
+            </select>
+            <button class="btn btn--outline" id="save-query-btn">Save Query</button>
+          </div>
+        </div>
+
+        <div class="query-lab-container">
+          <div class="card query-lab-card">
+            <div class="card__body">
+              <div class="query-lab-content">
+                <div class="query-input-section">
+                  <h4>Ask questions about your data in plain English</h4>
+                  <div class="prompt-examples">
+                    <p><strong>Examples:</strong> (Reference any connected database by its <span class="db-alias-box">alias</span> below)</p>
+                    <div class="examples-list" id="examples-list">
+                      <div class="example-item" data-prompt="Connect to all active databases and generate schema snapshots for each. Use aliases like Salesforce, Databricks, Snowflake_analytics, etc., and store metadata including columns, relationships, and constraints.">
+                        <span class="db-alias-box"><img src='/assets/icons/salesforce.svg' class='db-icon'/> Salesforce</span>, <span class="db-alias-box"><img src='/assets/icons/databricks.svg' class='db-icon'/> Databricks</span>, <span class="db-alias-box"><img src='/assets/icons/snowflake.svg' class='db-icon'/> Snowflake_analytics</span> — <b>Schema Snapshot Ingestion</b>
+                        <br><span class="example-desc">Connect to all active databases and generate schema snapshots for each. Store metadata including columns, relationships, and constraints.</span>
+                      </div>
+                      <div class="example-item" data-prompt="Build a pipeline that extracts customer behavior metrics from Databricks and enriches them using sales records from Salesforce, then loads them into Snowflake_analytics. Schedule it for daily execution at 3 AM.">
+                        <span class="db-alias-box"><img src='/assets/icons/databricks.svg' class='db-icon'/> Databricks</span> → <span class="db-alias-box"><img src='/assets/icons/salesforce.svg' class='db-icon'/> Salesforce</span> → <span class="db-alias-box"><img src='/assets/icons/snowflake.svg' class='db-icon'/> Snowflake_analytics</span> — <b>Natural Language Pipeline Creator</b>
+                        <br><span class="example-desc">Build a pipeline that extracts, enriches, and loads data across databases. Schedule for daily execution at 3 AM.</span>
+                      </div>
+                      <div class="example-item" data-prompt="Migrate customer data from Legacy_Oracle to Analytics_Snowflake. Filter for customers registered before 2023. Apply field mapping between customer_name → name, and registered_at → signup_date.">
+                        <span class="db-alias-box"><img src='/assets/icons/oracle.svg' class='db-icon'/> Legacy_Oracle</span> → <span class="db-alias-box"><img src='/assets/icons/snowflake.svg' class='db-icon'/> Analytics_Snowflake</span> — <b>Database Migration Dialogue</b>
+                        <br><span class="example-desc">Migrate customer data, filter by registration date, and map fields between source and target.</span>
+                      </div>
+                      <div class="example-item" data-prompt="From Salesforce, list all leads created in the last 30 days who made purchases in Snowflake_analytics worth over $1000.">
+                        <span class="db-alias-box"><img src='/assets/icons/salesforce.svg' class='db-icon'/> Salesforce</span> + <span class="db-alias-box"><img src='/assets/icons/snowflake.svg' class='db-icon'/> Snowflake_analytics</span> — <b>Unified Multi-DB Query</b>
+                        <br><span class="example-desc">Cross-database join: list leads from Salesforce with purchases in Snowflake_analytics over $1000.</span>
+                      </div>
+                      <div class="example-item" data-prompt="Show my pipeline flow as draggable lego blocks. Include live data preview and editable documentation blocks for each step.">
+                        <b>Visual Pipeline Layout Preference</b>
+                        <br><span class="example-desc">Show pipeline as draggable blocks, with live data preview and editable docs for each step.</span>
+                      </div>
+                      <div class="example-item" data-prompt="Use GPT-4 for prompt interpretation and Llama 3 for schema similarity scoring. Claude can review documentation steps for inconsistencies.">
+                        <b>GenAI Model Selector</b>
+                        <br><span class="example-desc">Use multiple AI models for different tasks: prompt interpretation, schema scoring, documentation review.</span>
+                      </div>
+                      <div class="example-item" data-prompt="Create a table explorer for Snowflake_analytics, show all tables with more than 1000 rows and highlight foreign key relationships.">
+                        <span class="db-alias-box"><img src='/assets/icons/snowflake.svg' class='db-icon'/> Snowflake_analytics</span> — <b>Metadata Explorer Generation</b>
+                        <br><span class="example-desc">Show all tables with >1000 rows and highlight foreign key relationships in Snowflake_analytics.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="query-input-container">
+                    <textarea id="prompt-input" class="form-control" rows="4" placeholder="e.g., 'Show me the top 10 customers by revenue from my SQL Server database'"></textarea>
+                    <div class="query-actions">
+                      <button class="btn btn--primary" id="execute-query-btn">Generate & Execute</button>
+                      <button class="btn btn--outline" id="explain-query-btn">Explain Query</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="query-output-section">
+                  <div class="query-output-tabs">
+                    <button class="output-tab active" data-tab="sql">Generated SQL</button>
+                    <button class="output-tab" data-tab="results">Query Results</button>
+                    <button class="output-tab" data-tab="explanation">Explanation</button>
+                  </div>
+                  <div class="output-content">
+                    <div class="output-panel sql-panel active">
+                      <div class="sql-header">
+                        <span class="database-badge" id="sql-database-badge">All Databases</span>
+                        <button class="btn btn--outline btn--sm" id="copy-sql-btn">Copy SQL</button>
+                      </div>
+                      <pre id="sql-output"><code>-- Your generated SQL will appear here</code></pre>
+                    </div>
+                    <div class="output-panel results-panel">
+                      <div id="results-container">
+                        <p class="empty-state">Execute a query to see results</p>
+                      </div>
+                    </div>
+                    <div class="output-panel explanation-panel">
+                      <div id="explanation-container">
+                        <p class="empty-state">Click "Explain Query" to see how the AI interpreted your request</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card query-history-card">
+            <div class="card__header">
+              <h3>Query History</h3>
+            </div>
+            <div class="card__body">
+              <div class="query-history-sidebar" id="query-history-sidebar">
+                <!-- Query history items will be populated via JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pipelines View -->
+      <section class="view pipelines-view" id="pipelines-view">
+        <div class="pipelines-header flex justify-between items-center mb-8">
+          <h2><img src="/assets/icons/databricks.svg" alt="Pipelines" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;"> AI-Powered Pipeline Creation</h2>
+        </div>
+        <div class="pipelines-intro mb-8">
+          <p style="font-size:1.1rem;color:#21808d;text-align:center;max-width:700px;margin:0 auto 24px auto;">
+            Effortlessly build, schedule, and monitor ELT pipelines across all your databases. Use natural language or visual tools to automate data integration, transformation, and delivery.
+          </p>
+        </div>
+        <div class="pipelines-container">
+          <div class="card pipeline-creator-card">
+            <div class="card__header">
+              <h3><img src="/assets/icons/snowflake.svg" alt="Pipeline Builder" style="width:24px;height:24px;vertical-align:middle;margin-right:8px;"> Pipeline Builder</h3>
+            </div>
+            <div class="card__body">
+              <div class="pipeline-input-section">
+                <h4>Describe your pipeline in natural language</h4>
+                <textarea id="pipeline-prompt" class="form-control" rows="3" placeholder="e.g., 'Create a daily pipeline that extracts customer data from SQL Server, transforms it in Snowflake, and loads it into Databricks for ML training'"></textarea>
+                <div class="pipeline-actions">
+                  <button class="btn btn--primary" id="generate-pipeline-btn">Generate Pipeline</button>
+                  <button class="btn btn--outline" id="suggest-pipeline-btn">Get Suggestions</button>
+                </div>
+              </div>
+              <div class="pipeline-preview" id="pipeline-preview">
+                <div class="pipeline-flow">
+                  <!-- Pipeline flow will be generated here -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pipelines-list">
+            <div class="card">
+              <div class="card__header">
+                <h3><img src="/assets/icons/postgresql.svg" alt="Active Pipelines" style="width:24px;height:24px;vertical-align:middle;margin-right:8px;"> Active Pipelines</h3>
+              </div>
+              <div class="card__body">
+                <div class="pipelines-grid" id="pipelines-grid">
+                  <!-- Pipeline items will be populated via JavaScript -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pipeline Creation Modal -->
+        <div class="modal" id="pipeline-modal">
+          <div class="modal-content pipeline-modal-content">
+            <div class="modal-header">
+              <h3>Create New Pipeline</h3>
+              <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <form id="pipeline-form" class="form">
+                <div class="form-group">
+                  <label for="pipeline-name" class="form-label">Pipeline Name</label>
+                  <input type="text" id="pipeline-name" class="form-control" placeholder="Customer Data Pipeline">
+                </div>
+                <div class="form-group">
+                  <label for="pipeline-description" class="form-label">Description</label>
+                  <textarea id="pipeline-description" class="form-control" rows="3" placeholder="Describe what this pipeline does..."></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="pipeline-schedule" class="form-label">Schedule</label>
+                  <select id="pipeline-schedule" class="form-control">
+                    <option value="manual">Manual</option>
+                    <option value="hourly">Hourly</option>
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                  </select>
+                </div>
+                <div class="form-actions flex gap-8">
+                  <button type="button" class="btn btn--secondary" id="test-pipeline-btn">Test Pipeline</button>
+                  <button type="submit" class="btn btn--primary" id="save-pipeline-btn">Create Pipeline</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Migration View -->
+      <section class="view migration-view" id="migration-view">
+        <div class="migration-header flex justify-between items-center mb-8">
+          <h2><img src="/assets/icons/oracle.svg" alt="Migration" style="width:32px;height:32px;vertical-align:middle;margin-right:10px;"> AI-Powered Data Migration</h2>
+        </div>
+        <div class="migration-intro mb-8">
+          <p style="font-size:1.1rem;color:#21808d;text-align:center;max-width:700px;margin:0 auto 24px auto;">
+            Seamlessly migrate data between any supported database. PromptELT ensures referential integrity, schema mapping, and real-time progress tracking—all with a few clicks or a simple prompt.
+          </p>
+        </div>
+        <div class="migration-container">
+          <div class="card migration-wizard-card">
+            <div class="card__header">
+              <h3><img src="/assets/icons/microsoft-sql-server.svg" alt="Migration Wizard" style="width:24px;height:24px;vertical-align:middle;margin-right:8px;"> Migration Wizard</h3>
+            </div>
+            <div class="card__body">
+              <div class="migration-steps">
+                <div class="step active" data-step="1">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <h4>Source Database</h4>
+                    <p>Select the database you want to migrate from</p>
+                    <select id="source-database" class="form-control">
+                      <option value="">Choose source database...</option>
+                      <!-- Database options will be populated via JavaScript -->
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="step" data-step="2">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <h4>Target Database</h4>
+                    <p>Select the database you want to migrate to</p>
+                    <select id="target-database" class="form-control">
+                      <option value="">Choose target database...</option>
+                      <!-- Database options will be populated via JavaScript -->
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="step" data-step="3">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <h4>Migration Strategy</h4>
+                    <p>Describe what you want to migrate</p>
+                    <textarea id="migration-description" class="form-control" rows="3" placeholder="e.g., 'Migrate all customer data and order history from SQL Server to Snowflake, maintaining referential integrity'"></textarea>
+                  </div>
+                </div>
+                
+                <div class="step" data-step="4">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <h4>Review & Execute</h4>
+                    <div id="migration-plan">
+                      <!-- Migration plan will be generated here -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="migration-actions">
+                <button class="btn btn--outline" id="prev-step-btn" disabled>Previous</button>
+                <button class="btn btn--primary" id="next-step-btn">Next</button>
+              </div>
+            </div>
+          </div>
+          <div class="migration-progress">
+            <div class="card">
+              <div class="card__header">
+                <h3><img src="/assets/icons/snowflake.svg" alt="Migration Progress" style="width:24px;height:24px;vertical-align:middle;margin-right:8px;"> Migration Progress</h3>
+              </div>
+              <div class="card__body">
+                <div id="migration-progress-list">
+                  <!-- Migration progress will be shown here -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Governance View -->
+      <section class="view governance-view" id="governance-view">
+        <div class="governance-header flex justify-between items-center mb-8">
+          <h2>Data Governance & Schema Explorer</h2>
+          <button class="btn btn--primary" id="add-policy-btn">Add Policy</button>
+        </div>
+
+        <div class="governance-container">
+          <!-- Data Governance Visualization -->
+          <div class="card governance-visualization-card">
+            <div class="card__header">
+              <h3>Data Governance Overview</h3>
+            </div>
+            <div class="card__body">
+              <div class="governance-flow">
+                <div class="governance-node data-source pulse">
+                  <div class="node-icon">🗄️</div>
+                  <div class="node-label">Data Sources</div>
+                  <div class="node-count">6 Databases</div>
+                  <div class="node-details">SQL Server, Oracle, Snowflake, Salesforce, PostgreSQL, Databricks</div>
+                </div>
+                <div class="governance-arrow">⚡</div>
+                <div class="governance-node data-quality pulse" style="animation-delay: 0.5s;">
+                  <div class="node-icon">🔍</div>
+                  <div class="node-label">Quality Checks</div>
+                  <div class="node-count">24 Rules</div>
+                  <div class="node-details">Validation, Completeness, Accuracy, Consistency</div>
+                </div>
+                <div class="governance-arrow">⚡</div>
+                <div class="governance-node data-security pulse" style="animation-delay: 1s;">
+                  <div class="node-icon">🛡️</div>
+                  <div class="node-label">Security</div>
+                  <div class="node-count">12 Policies</div>
+                  <div class="node-details">Encryption, Access Control, Audit Logging</div>
+                </div>
+                <div class="governance-arrow">⚡</div>
+                <div class="governance-node data-compliance pulse" style="animation-delay: 1.5s;">
+                  <div class="node-icon">📋</div>
+                  <div class="node-label">Compliance</div>
+                  <div class="node-count">8 Standards</div>
+                  <div class="node-details">GDPR, HIPAA, SOX, PCI DSS</div>
+                </div>
+              </div>
+              
+              <div class="governance-metrics">
+                <div class="metric-card">
+                  <div class="metric-icon">✅</div>
+                  <div class="metric-value">98.5%</div>
+                  <div class="metric-label">Data Quality Score</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-icon">🛡️</div>
+                  <div class="metric-value">100%</div>
+                  <div class="metric-label">Security Compliance</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-icon">📈</div>
+                  <div class="metric-value">24/7</div>
+                  <div class="metric-label">Monitoring Active</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-icon">⚡</div>
+                  <div class="metric-value">2.3s</div>
+                  <div class="metric-label">Avg Response Time</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="governance-sidebar">
+            <div class="card schema-explorer-card">
+              <div class="card__header">
+                <h3>Schema Explorer</h3>
+              </div>
+              <div class="card__body">
+                <div class="schema-navigation">
+                  <div class="database-selector">
+                    <select id="schema-database-selector" class="form-control">
+                      <option value="">Select Database</option>
+                      <!-- Database options will be populated via JavaScript -->
+                    </select>
+                  </div>
+                  <div class="schema-tree" id="schema-tree">
+                    <!-- Schema tree will be populated via JavaScript -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card governance-policies-card">
+              <div class="card__header">
+                <h3>Data Governance Policies</h3>
+              </div>
+              <div class="card__body">
+                <div class="policies-list" id="policies-list">
+                  <!-- Policies will be populated via JavaScript -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features View -->
+      <section class="view features-view" id="features-view" style="display:none;">
+        <div class="features-header flex justify-between items-center mb-8">
+          <h2>Features</h2>
+        </div>
+        <div class="features-cards-grid">
+          <div class="feature-card">
+            <img src="/assets/icons/microsoft-sql-server.svg" alt="Multi-Database" class="feature-icon" />
+            <h3>Unified Multi-Database Access</h3>
+            <p>Connect to SQL Server, Oracle, Snowflake, Databricks, Salesforce, and PostgreSQL from a single interface. No more switching tools.</p>
+          </div>
+          <div class="feature-card">
+            <img src="/exported-assets/promptelt_overview.png" alt="AI Layer" class="feature-icon" />
+            <h3>AI-Powered Natural Language Interface</h3>
+            <p>Query and manage your data using plain English. The AI engine translates your intent into optimized SQL for any backend.</p>
+          </div>
+          <div class="feature-card">
+            <img src="/assets/icons/snowflake.svg" alt="Migration" class="feature-icon" />
+            <h3>Seamless Data Migration</h3>
+            <p>Move data between databases with a click. Maintain referential integrity and automate schema mapping.</p>
+          </div>
+          <div class="feature-card">
+            <img src="/assets/icons/databricks.svg" alt="Pipelines" class="feature-icon" />
+            <h3>Pipeline Automation</h3>
+            <p>Build, schedule, and monitor ELT pipelines visually or with natural language. Integrate, transform, and load data effortlessly.</p>
+          </div>
+          <div class="feature-card">
+            <img src="/assets/icons/salesforce.svg" alt="MCP" class="feature-icon" />
+            <h3>MCP-Powered Auto-Updating Connectors</h3>
+            <p>Connectors update themselves using live documentation. No more manual maintenance—always up to date.</p>
+          </div>
+          <div class="feature-card">
+            <img src="/assets/icons/postgresql.svg" alt="Universal Flexibility" class="feature-icon" />
+            <h3>Universal Flexibility</h3>
+            <p>Generate code in any language, visualize data flows in any format, and avoid vendor lock-in. Complete creative freedom.</p>
+          </div>
+          <div class="feature-card">
+            <img src="/exported-assets/conversation_flow.png" alt="Conversational" class="feature-icon" />
+            <h3>Conversational Everything</h3>
+            <p>Configure, troubleshoot, and document your data stack using natural language. Zero learning curve for new users.</p>
+          </div>
+          <div class="feature-card">
+            <img src="/exported-assets/elt_architecture.png" alt="ELT Architecture" class="feature-icon" />
+            <h3>Modern ELT Architecture</h3>
+            <p>Leverage cloud-native processing, raw data preservation, and parallel execution for scalable, real-time analytics.</p>
+          </div>
+          <div class="feature-card">
+            <img src="/exported-assets/generated_image_4.png" alt="Governance" class="feature-icon" />
+            <h3>Enterprise-Grade Governance</h3>
+            <p>Set policies, monitor compliance, and ensure data quality across all sources with a unified governance layer.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html> 
