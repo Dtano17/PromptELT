@@ -2,7 +2,7 @@
 # This script deploys the application to Google Cloud Run with custom domain
 
 param(
-    [string]$ProjectId = "your-gcp-project-id",
+    [string]$ProjectId = "promptelt",
     [string]$Domain = "promptelt.ai",
     [string]$Region = "us-central1"
 )
@@ -87,12 +87,7 @@ try {
 if ($Domain -ne "your-domain.com") {
     Write-Host "🌍 Setting up custom domain: $Domain" -ForegroundColor Cyan
     try {
-        gcloud run domain-mappings create `
-            --service=promptelt `
-            --domain=$Domain `
-            --region=$Region `
-            --force-override
-        
+        gcloud run domain-mappings create --service=promptelt --domain=$Domain --region=$Region --force-override
         Write-Host "✅ Custom domain mapped successfully!" -ForegroundColor Green
         Write-Host "🌐 Your application is now available at: https://$Domain" -ForegroundColor Cyan
     } catch {
@@ -123,12 +118,5 @@ Write-Host "   2. Configure your domain DNS settings if using a custom domain"
 Write-Host "   3. Set up monitoring and logging in Google Cloud Console"
 Write-Host "   4. Configure SSL certificates (automatic with Cloud Run)"
 Write-Host ""
-Write-Host "📈 Monitor your deployment:" -ForegroundColor Cyan
-Write-Host "   https://console.cloud.google.com/run/detail/$Region/promptelt"
-Write-Host ""
-
-# Usage instructions
-Write-Host "💡 Usage Examples:" -ForegroundColor Yellow
-Write-Host "   .\deploy.ps1 -ProjectId 'my-project-id' -Domain 'promptelt.ai'"
-Write-Host "   .\deploy.ps1 -ProjectId 'promptelt-app'"
+Write-Host "Monitor your deployment at: https://console.cloud.google.com/run/detail/$Region/promptelt" -ForegroundColor Yellow
 Write-Host "" 

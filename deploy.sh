@@ -6,7 +6,7 @@
 set -e
 
 # Configuration
-PROJECT_ID="your-gcp-project-id"
+PROJECT_ID="promptelt"  # Your actual GCP project ID
 REGION="us-central1"
 SERVICE_NAME="promptelt"
 DOMAIN="promptelt.ai"
